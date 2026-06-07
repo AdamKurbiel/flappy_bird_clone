@@ -1,5 +1,11 @@
-export function FlappyBird(CTX, GAME_HEIGHT, GAME_WIDTH){
+export function FlappyBird(CTX, GAME_HEIGHT, GAME_WIDTH, BIRD){
     let running = false;
+
+
+    function drawBird(){
+        CTX.fillStyle = "black";
+        CTX.fillRect(BIRD.x,BIRD.y,32,32);
+    }
     
     function clearCanvas(){
         CTX.setTransform(1,0,0,1,0,0);
@@ -10,10 +16,15 @@ export function FlappyBird(CTX, GAME_HEIGHT, GAME_WIDTH){
     }
 
     function step(){
-        clearCanvas()
+        if (!running) return;
+        clearCanvas();
 
-        requestAnimationFrame(step)
-    }   
+        drawBird();
+        BIRD.update();
+
+
+        requestAnimationFrame(step);
+    }
 
     return{
         start(){
@@ -22,7 +33,7 @@ export function FlappyBird(CTX, GAME_HEIGHT, GAME_WIDTH){
             requestAnimationFrame(step)
         },
         stop(){
-            running = false
+            running = false;
         }
     }
 }
