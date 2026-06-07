@@ -1,4 +1,15 @@
 canvas{
     border: 1px solid black;
     image-rendering: pixelated;
+
+    display: inline;
+}
+
+body{
+    width: 100%;
+    text-align: center;
+    font-family: Helvetica, Arial;
+}
+a{
+    color: black;
 }
