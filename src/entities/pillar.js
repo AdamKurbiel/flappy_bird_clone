@@ -6,7 +6,7 @@ export class Pillar{
     }
 
     update(){
-        if (this.x < -32){
+        if (this.x < -64){
             this.finished = true;
             return;}
         this.x -= 2;

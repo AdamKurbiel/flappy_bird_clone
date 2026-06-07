@@ -3,6 +3,7 @@ import { Pillar } from "../entities/pillar.js";
 export function FlappyBird(CTX, GAME_HEIGHT, GAME_WIDTH, BIRD){
     let running = false;
     let obstacles = [];
+    let maxObstacles = 1;
 
     function drawBird(){
         CTX.fillStyle = "black";
@@ -23,27 +24,37 @@ export function FlappyBird(CTX, GAME_HEIGHT, GAME_WIDTH, BIRD){
 
     }
 
+    function createPillar(y){
+        if (obstacles.length < maxObstacles){
+            
+        let pillar = new Pillar(y);
+        obstacles.push(pillar);
+        }
+    }
+
     function step(){
         if (!running) return;
         clearCanvas();
 
         BIRD.update();
         drawBird();
+        
+        createPillar(250);
 
-        console.log(obstacles.length)
-        if (obstacles.length < 1){
-            let pillar = new Pillar(250);
-            obstacles.push(pillar);
-        }
 
-        for (let i in obstacles){
-            if (obstacles[i].finished){
-                obstacles.splice(i,1);
-                continue;
+        for (let i = obstacles.length - 1; i >= 0; i--) {
+            const pillar = obstacles[i];
+            pillar.update();
+
+            if (pillar.finished) {
+                obstacles.splice(i, 1);
+            } else {
+                drawPillar(pillar);
+
+                if (pillar.x < 200 && maxObstacles === 1) {
+                    maxObstacles = 2;
+                }
             }
-            obstacles[i].update();
-    
-            drawPillar(obstacles[i])
         }
 
 
