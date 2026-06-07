@@ -7,8 +7,8 @@ export class Bird {
         this.color = "green";
 
         this.velocity = 0;
-        this.gravity = 0.6;
-        this.jumpStrength = -10;
+        this.gravity = 0.5;
+        this.jumpStrength = -8;
         this.terminalVelocity = 15;
 
         this.started = false

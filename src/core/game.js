@@ -18,14 +18,31 @@ export function FlappyBird(CTX, GAME_HEIGHT, GAME_WIDTH, BIRD){
         CTX.fillRect(0,0,GAME_WIDTH,GAME_HEIGHT);
     }
 
+    const GAP_HEIGHT = 160;
+
     function drawPillar(object){
-        const gapHeight = 160;
         const topHeight = object.y;
-        const bottomY = object.y + gapHeight;
+        const bottomY = object.y + GAP_HEIGHT;
         const bottomHeight = GAME_HEIGHT - bottomY;
 
         CTX.fillRect(object.x, 0, 50, topHeight);
         CTX.fillRect(object.x, bottomY, 50, bottomHeight);
+    }
+
+    function isColliding(rectA, rectB){
+        return rectA.x < rectB.x + rectB.w &&
+               rectA.x + rectA.w > rectB.x &&
+               rectA.y < rectB.y + rectB.h &&
+               rectA.y + rectA.h > rectB.y;
+    }
+
+    function checkCollision(bird, pillar){
+        const birdRect = { x: bird.x, y: bird.y, w: bird.width, h: bird.height };
+        const topRect = { x: pillar.x, y: 0, w: 50, h: pillar.y };
+        const bottomY = pillar.y + GAP_HEIGHT;
+        const bottomRect = { x: pillar.x, y: bottomY, w: 50, h: GAME_HEIGHT - bottomY };
+
+        return isColliding(birdRect, topRect) || isColliding(birdRect, bottomRect);
     }
 
     function createPillar(y){
@@ -53,6 +70,11 @@ export function FlappyBird(CTX, GAME_HEIGHT, GAME_WIDTH, BIRD){
             const pillar = obstacles[i];
             pillar.update();
 
+            if (checkCollision(BIRD, pillar)) {
+                running = false;
+                break;
+            }
+
             if (pillar.finished) {
                 obstacles.splice(i, 1);
             } else {
@@ -65,8 +87,7 @@ export function FlappyBird(CTX, GAME_HEIGHT, GAME_WIDTH, BIRD){
         }
         }
 
-        
-
+        if (!running) return;
 
         requestAnimationFrame(step);
     }
