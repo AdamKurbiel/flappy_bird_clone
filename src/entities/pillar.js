@@ -3,6 +3,7 @@ export class Pillar{
         this.x = 500;
         this.y = y;
         this.finished = false;
+        this.passed = false;
     }
 
     update(){

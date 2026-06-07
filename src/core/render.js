@@ -14,13 +14,35 @@ export function drawBird(CTX, bird) {
 }
 
 export function drawScore(CTX, WIDTH, HEIGHT, SCORE){
-    CTX.font = "48px Arial";
+    CTX.font = "38px Arial";
     CTX.fillStyle = "White";
-    CTX.lineWidth = 3;
+    CTX.lineWidth = 4;
     CTX.strokeStyle = "Black";
     CTX.textAlign = "center";
-    CTX.strokeText(`${Math.floor(SCORE/10)}`,WIDTH/2,50);
-    CTX.fillText(`${Math.floor(SCORE/10)}`,WIDTH/2,50)
+    CTX.strokeText(`${SCORE}`, WIDTH / 2, 50);
+    CTX.fillText(`${SCORE}`, WIDTH / 2, 50);
+}
+
+export function drawOverlayText(CTX, WIDTH, HEIGHT, title, subtitle, lines = []) {
+    CTX.font = "48px Arial";
+    CTX.fillStyle = "White";
+    CTX.strokeStyle = "Black";
+    CTX.lineWidth = 5;
+    CTX.textAlign = "center";
+
+    CTX.strokeText(title, WIDTH / 2, HEIGHT / 2 - 40);
+    CTX.fillText(title, WIDTH / 2, HEIGHT / 2 - 40);
+
+    CTX.font = "24px Arial";
+    CTX.strokeText(subtitle, WIDTH / 2, HEIGHT / 2 + 10);
+    CTX.fillText(subtitle, WIDTH / 2, HEIGHT / 2 + 10);
+
+    CTX.font = "20px Arial";
+    lines.forEach((line, index) => {
+        const y = HEIGHT / 2 + 50 + index * 28;
+        CTX.strokeText(line, WIDTH / 2, y);
+        CTX.fillText(line, WIDTH / 2, y);
+    });
 }
 
 export function drawPillar(CTX, object, GAME_HEIGHT) {

@@ -31,12 +31,19 @@ export class Bird {
     }
 
     jump() {
-        this.started = true
+        this.started = true;
         if (this.y > 500){
             this.y = 500;
             this.velocity = 0;
             return;
         }
         this.velocity = this.jumpStrength;
+    }
+
+    reset() {
+        this.x = 225;
+        this.y = 225;
+        this.velocity = 0;
+        this.started = false;
     }
 }
