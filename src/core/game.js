@@ -19,12 +19,18 @@ export function FlappyBird(CTX, GAME_HEIGHT, GAME_WIDTH, BIRD){
         if (!running) return;
         clearCanvas();
 
-        drawBird();
         BIRD.update();
-
+        drawBird();
 
         requestAnimationFrame(step);
     }
+
+
+    document.addEventListener("click", (event) => { 
+        BIRD.jump();
+
+    })
+
 
     return{
         start(){
