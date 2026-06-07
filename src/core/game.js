@@ -17,10 +17,10 @@ export function FlappyBird(CTX, GAME_HEIGHT, GAME_WIDTH, BIRD){
 
     function step(){
         if (!running) return;
-        clearCanvas();
+        clearCanvas(CTX,GAME_WIDTH,GAME_HEIGHT);
         
         BIRD.update();
-        drawBird();
+        drawBird(CTX,BIRD);
 
         let coords = Math.random() * 250;
 
@@ -40,7 +40,7 @@ export function FlappyBird(CTX, GAME_HEIGHT, GAME_WIDTH, BIRD){
             if (pillar.finished) {
                 obstacles.splice(i, 1);
             } else {
-                drawPillar(pillar);
+                drawPillar(CTX, pillar, GAME_HEIGHT);
 
                 if (pillar.x < 200 && maxObstacles === 1) {
                     maxObstacles = 2;
