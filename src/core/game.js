@@ -4,7 +4,7 @@ export function FlappyBird(CTX, GAME_HEIGHT, GAME_WIDTH, BIRD){
 
     function drawBird(){
         CTX.fillStyle = "black";
-        CTX.fillRect(BIRD.x,BIRD.y,32,32);
+        CTX.fillRect(BIRD.x,BIRD.y,BIRD.width, BIRD.height);
     }
     
     function clearCanvas(){

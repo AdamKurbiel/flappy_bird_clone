@@ -2,8 +2,8 @@ export class Bird {
     constructor() {
         this.x = 225;
         this.y = 225;
-        this.width = 32;
-        this.height = 32;
+        this.width = 48;
+        this.height = 48;
         this.color = "green";
 
         this.velocity = 0;
