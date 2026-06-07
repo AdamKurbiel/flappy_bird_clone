@@ -2,14 +2,14 @@ export class Bird {
     constructor() {
         this.x = 225;
         this.y = 225;
-        this.width = 48;
-        this.height = 48;
+        this.width = 32;
+        this.height = 32;
         this.color = "green";
 
         this.velocity = 0;
         this.gravity = 0.6;
         this.jumpStrength = -10;
-        this.terminalVelocity = 12;
+        this.terminalVelocity = 15;
 
         this.started = false
     }

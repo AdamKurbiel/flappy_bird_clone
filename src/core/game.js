@@ -1,6 +1,8 @@
+import { Pillar } from "../entities/pillar.js";
+
 export function FlappyBird(CTX, GAME_HEIGHT, GAME_WIDTH, BIRD){
     let running = false;
-
+    let obstacles = [];
 
     function drawBird(){
         CTX.fillStyle = "black";
@@ -15,12 +17,35 @@ export function FlappyBird(CTX, GAME_HEIGHT, GAME_WIDTH, BIRD){
         CTX.fillRect(0,0,GAME_WIDTH,GAME_HEIGHT);
     }
 
+    function drawPillar(object){
+        CTX.fillRect(object.x,object.y, 50, 500);
+        CTX.fillRect(object.x,-object.y - 160, 50, 500);
+
+    }
+
     function step(){
         if (!running) return;
         clearCanvas();
 
         BIRD.update();
         drawBird();
+
+        console.log(obstacles.length)
+        if (obstacles.length < 1){
+            let pillar = new Pillar(250);
+            obstacles.push(pillar);
+        }
+
+        for (let i in obstacles){
+            if (obstacles[i].finished){
+                obstacles.splice(i,1);
+                continue;
+            }
+            obstacles[i].update();
+    
+            drawPillar(obstacles[i])
+        }
+
 
         requestAnimationFrame(step);
     }
