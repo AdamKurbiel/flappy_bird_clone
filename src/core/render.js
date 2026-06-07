@@ -16,6 +16,7 @@ export function drawBird(CTX, bird) {
 export function drawScore(CTX, WIDTH, HEIGHT, SCORE){
     CTX.font = "30px Arial";
     CTX.fillStyle = "White";
+    CTX.lineWidth = 3;
     CTX.strokeStyle = "Black";
     CTX.textAlign = "center";
     CTX.strokeText(`Score: ${SCORE}`,WIDTH/2,30);

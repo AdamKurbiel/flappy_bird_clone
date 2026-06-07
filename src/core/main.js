@@ -8,5 +8,7 @@ const player = new Bird();
 const GAME_WIDTH = 500;
 const GAME_HEIGHT = 500;
 
+ctx.imageSmoothingEnabled = false;
+
 var game = new FlappyBird(ctx, GAME_HEIGHT, GAME_WIDTH, player)
 game.start()
