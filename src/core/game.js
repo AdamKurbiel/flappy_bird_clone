@@ -105,14 +105,18 @@ export function FlappyBird(CTX, GAME_HEIGHT, GAME_WIDTH, BIRD){
     }
 
     function onCanvasClick() {
-        if (state === "start" || state === "gameover") {
-            resetGame();
-        }
-
         BIRD.jump();
     }
 
-    document.addEventListener("click", onCanvasClick);
+    function checkReset(){
+        if (state === "start" || state === "gameover") {
+            resetGame();
+            BIRD.jump();
+        }
+    }
+
+    document.addEventListener("mousedown", onCanvasClick);
+    document.addEventListener("click", checkReset);
 
     return{
         start(){
