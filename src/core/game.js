@@ -9,8 +9,9 @@ export function FlappyBird(CTX, GAME_HEIGHT, GAME_WIDTH, BIRD){
     let score = 0;
 
 
-    function createPillar(y){
+    function createPillar(){
         if (obstacles.length < maxObstacles){
+        let y = Math.random() * 250;
             
         let pillar = new Pillar(y);
         obstacles.push(pillar);
@@ -21,13 +22,12 @@ export function FlappyBird(CTX, GAME_HEIGHT, GAME_WIDTH, BIRD){
         if (!running) return;
         clearCanvas(CTX,GAME_WIDTH,GAME_HEIGHT);
         drawScore(CTX,GAME_HEIGHT,GAME_WIDTH,score);
-
         
         BIRD.update();
         drawBird(CTX,BIRD);
 
-        let coords = Math.random() * 250;
-        createPillar(coords);
+        
+        createPillar();
 
 
         if (BIRD.started){
@@ -57,16 +57,13 @@ export function FlappyBird(CTX, GAME_HEIGHT, GAME_WIDTH, BIRD){
         
 
         if (!running) return;
-
-
-
+        
         requestAnimationFrame(step);
     }
 
 
     document.addEventListener("click", (event) => { 
         BIRD.jump();
-
     })
 
 
@@ -78,6 +75,7 @@ export function FlappyBird(CTX, GAME_HEIGHT, GAME_WIDTH, BIRD){
         },
         stop(){
             running = false;
+            return;
         }
     }
 }

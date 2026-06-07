@@ -9,18 +9,18 @@ export function clearCanvas(CTX, GAME_WIDTH, GAME_HEIGHT) {
 }
 
 export function drawBird(CTX, bird) {
-    CTX.fillStyle = "black";
+    CTX.fillStyle = "#fcba03";
     CTX.fillRect(bird.x, bird.y, bird.width, bird.height);
 }
 
 export function drawScore(CTX, WIDTH, HEIGHT, SCORE){
-    CTX.font = "30px Arial";
+    CTX.font = "48px Arial";
     CTX.fillStyle = "White";
     CTX.lineWidth = 3;
     CTX.strokeStyle = "Black";
     CTX.textAlign = "center";
-    CTX.strokeText(`Score: ${SCORE}`,WIDTH/2,30);
-    CTX.fillText(`Score: ${SCORE}`,WIDTH/2,30)
+    CTX.strokeText(`${Math.floor(SCORE/10)}`,WIDTH/2,50);
+    CTX.fillText(`${Math.floor(SCORE/10)}`,WIDTH/2,50)
 }
 
 export function drawPillar(CTX, object, GAME_HEIGHT) {
@@ -28,6 +28,7 @@ export function drawPillar(CTX, object, GAME_HEIGHT) {
     const bottomY = object.y + GAP_HEIGHT;
     const bottomHeight = GAME_HEIGHT - bottomY;
 
+    CTX.fillStyle = "green";
     CTX.fillRect(object.x, 0, 50, topHeight);
     CTX.fillRect(object.x, bottomY, 50, bottomHeight);
 }
