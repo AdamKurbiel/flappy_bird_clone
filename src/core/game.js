@@ -19,9 +19,13 @@ export function FlappyBird(CTX, GAME_HEIGHT, GAME_WIDTH, BIRD){
     }
 
     function drawPillar(object){
-        CTX.fillRect(object.x,object.y, 50, 500);
-        CTX.fillRect(object.x,-object.y - 160, 50, 500);
+        const gapHeight = 160;
+        const topHeight = object.y;
+        const bottomY = object.y + gapHeight;
+        const bottomHeight = GAME_HEIGHT - bottomY;
 
+        CTX.fillRect(object.x, 0, 50, topHeight);
+        CTX.fillRect(object.x, bottomY, 50, bottomHeight);
     }
 
     function createPillar(y){
@@ -35,13 +39,16 @@ export function FlappyBird(CTX, GAME_HEIGHT, GAME_WIDTH, BIRD){
     function step(){
         if (!running) return;
         clearCanvas();
-
+        
         BIRD.update();
         drawBird();
-        
-        createPillar(250);
+
+        let coords = Math.random() * 250;
+
+        createPillar(coords);
 
 
+        if (BIRD.started){
         for (let i = obstacles.length - 1; i >= 0; i--) {
             const pillar = obstacles[i];
             pillar.update();
@@ -56,6 +63,9 @@ export function FlappyBird(CTX, GAME_HEIGHT, GAME_WIDTH, BIRD){
                 }
             }
         }
+        }
+
+        
 
 
         requestAnimationFrame(step);
