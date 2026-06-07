@@ -13,6 +13,15 @@ export function drawBird(CTX, bird) {
     CTX.fillRect(bird.x, bird.y, bird.width, bird.height);
 }
 
+export function drawScore(CTX, WIDTH, HEIGHT, SCORE){
+    CTX.font = "30px Arial";
+    CTX.fillStyle = "White";
+    CTX.strokeStyle = "Black";
+    CTX.textAlign = "center";
+    CTX.strokeText(`Score: ${SCORE}`,WIDTH/2,30);
+    CTX.fillText(`Score: ${SCORE}`,WIDTH/2,30)
+}
+
 export function drawPillar(CTX, object, GAME_HEIGHT) {
     const topHeight = object.y;
     const bottomY = object.y + GAP_HEIGHT;

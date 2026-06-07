@@ -1,11 +1,13 @@
 import { Pillar } from "../entities/pillar.js";
-import { clearCanvas, drawBird, drawPillar, GAP_HEIGHT } from "./render.js";
+import { clearCanvas, drawBird, drawPillar, GAP_HEIGHT, drawScore } from "./render.js";
 import { checkCollision } from "./collision.js";
 
 export function FlappyBird(CTX, GAME_HEIGHT, GAME_WIDTH, BIRD){
     let running = false;
     let obstacles = [];
     let maxObstacles = 1;
+    let score = 0;
+
 
     function createPillar(y){
         if (obstacles.length < maxObstacles){
@@ -48,6 +50,10 @@ export function FlappyBird(CTX, GAME_HEIGHT, GAME_WIDTH, BIRD){
             }
         }
         }
+        
+        
+        score++;
+        drawScore(CTX,GAME_HEIGHT,GAME_WIDTH,score);
 
         if (!running) return;
 
